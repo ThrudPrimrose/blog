@@ -1,8 +1,10 @@
-import logo from './logo.svg';
 import './App.css';
 import Bar from './Bar.js';
+import { ContentfulService } from './Contentful.js';
 
 function App() {
+  //const a = new ContentfulService();
+
   return (
     <>
     <div className="container mx-auto bg-gray-200 rounded-xl shadow border p-8 m-10">
