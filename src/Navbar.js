@@ -14,11 +14,14 @@ function classNames(...classes) {
 }
 
 export default function Navbar() {
+    const navigate = useNavigate();
+
     function setCurrent(offset) {
         for (var navitem of navigation) {
             navitem.current = false;
         }
         navigation[offset].current = true;
+        //console.log(offset, navigation);
     }
 
     return (
@@ -66,7 +69,8 @@ export default function Navbar() {
             <div className="space-y-1 px-2 pb-3 pt-2">
               {navigation.map((item, offset) => (
                 <Link
-                  key={item.name}
+                  key={item.name + "_mobile"}
+                  href={item.routeName}
                   className={classNames(
                     item.current ? 'bg-gray-300 text-black' : 'text-gray-900 hover:bg-gray-700 hover:text-white',
                     'block rounded-md px-3 py-2 text-base font-medium'
