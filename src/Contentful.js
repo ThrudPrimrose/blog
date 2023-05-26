@@ -1,4 +1,4 @@
-import { createClient, Entry } from 'contentful';
+import { createClient } from 'contentful';
 
 export class ContentfulService {
     constructor(){
@@ -34,6 +34,3 @@ export class ContentfulService {
         return this.getAllEntriesOfType("pAutobiography", query);
     }
 }
-
-//ContentfulService._instance = null;
-//export default ContentfulService;
