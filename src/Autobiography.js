@@ -5,7 +5,7 @@ var retrieved = false;
 var collect = []
 
 const social_media= [
-  ["instagram", "https://www.instagram.com/thrudprimrose", "/assets/instagram.png", 1.0], 
+  ["instagram", "https://www.instagram.com/thrudprimrose", "/assets/instagram.svg", 1.0], 
   ["github","https://github.com/ThrudPrimrose/", "/assets/github.svg", 1.0],
   ["linkedin","https://www.linkedin.com/in/yakup-koray-budanaz-51136b1b5/", "/assets/linkedin.png", 1.18], 
   ["resaerchgate","https://www.researchgate.net/profile/Yakup-Budanaz", "/assets/researchgate.svg", 1.0]
