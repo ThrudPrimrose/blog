@@ -19,3 +19,17 @@ export function compareByDate(key1, key2) {
     }
   }
 }
+
+export function isUnixEpoch(dateSerialized) {
+  const date = new Date(dateSerialized);
+  const year = date.getFullYear();
+  const month = date.getMonth();
+  const day = date.getDate();
+
+  const unixEpoch = new Date('1970-01-01');
+  const epochYear = unixEpoch.getFullYear();
+  const epochMonth = unixEpoch.getMonth();
+  const epochDay = unixEpoch.getDate();
+
+  return year === epochYear && month === epochMonth && day === epochDay;
+}
