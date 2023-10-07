@@ -73,7 +73,7 @@ export default function Autobiography() {
   return (
     <>
       {autobiography.map((person) => (
-        <div className="container mx-auto bg-white-200 p-8 m-10 mb-2 min-h-48 min-w-128 w-auto max-w-screen-md" key="person_container">
+        <div className="container mx-auto bg-white-200 p-8 m-10 mb-2 min-h-48 min-w-160 w-auto max-w-screen-lg" key="person_container">
           <div className="flex flex-row gap-x-4 w-full" key={person.name + "_container"}>
             <div className="flex-initial h-48 w-48 min-w-[128px] min-h-[128px] flex-shrink-0" key="personImageContainer">
               <img className="rounded-full h-48 w-48" src={person.imageUrl} alt="" key="person_image" />
@@ -81,7 +81,7 @@ export default function Autobiography() {
             <div className="flex-1 flex-auto" key="icon_container">
               <p className="mt-1 text-sm font-semibold leading-6 text-gray-900 text-xl">{person.name}</p>
               <p className="mt-2 text-gray-500 overflow-visible w-full">{person.autobiography}</p>
-              <div className="mt-8 ml-0 flex justify-center">
+              <div className="mt-8 ml-0 sm:ml-8 mr-0 sm:ml-8 flex justify-center">
                 {social_media.map((media_and_link, index) => (
                   <>
                     <div className="flex-auto" key={media_and_link[1] + "_logo"}>
@@ -103,7 +103,7 @@ export default function Autobiography() {
         </div>
       ))}
 
-      <div className="container mx-auto bg-white-200 p-8 pb-0 pt-0 min-h-48 min-w-128 max-w-screen-md relative" key="education_items_container">
+      <div className="container mx-auto bg-white-200 p-8 pb-0 pt-0 min-h-48 min-w-128 max-w-screen-lg relative" key="education_items_container">
         <>
         <h1 className="text-3xl font-semibold text-gray-700 dark:text-white" key="eduTitle">Education:</h1>
           {educationItems ? (
@@ -117,8 +117,8 @@ export default function Autobiography() {
                   <h3 className="text-lg font-semibold text-gray-900 dark:text-white" key={"edu_item_summary_" + index}>
                     {item.fields.institution}
                   </h3>
-                  <div className="mb-4 text-base font-normal text-gray-500 dark:text-gray-400" key={"edu_item_text_" + index}>
-                    <div className="max-w-screen-md mx-auto" key={"edu_item_text_inner_div_" + index}>
+                  <div className="mb-1 text-base font-normal text-gray-500 dark:text-gray-400" key={"edu_item_text_" + index}>
+                    <div className="max-w-screen-lg mx-auto" key={"edu_item_text_inner_div_" + index}>
                       {item.fields.degree}
                     </div>
                   </div>
@@ -132,7 +132,7 @@ export default function Autobiography() {
         </>
       </div>
 
-      <div className="container mx-auto bg-white-200 min-h-48 min-w-128 max-w-screen-md p-8 pt-2" key="CV_list_container">
+      <div className="container mx-auto bg-white-200 min-h-48 min-w-128 max-w-screen-lg p-8 pt-2" key="CV_list_container">
       <h1 className="text-3xl font-semibold text-gray-700 dark:text-white" key="eduTitle">Work Experience:</h1>
         <ol className="relative border-l border-gray-200 dark:border-gray-700 m-10 mt-2" key="CV_list">
           {experienceItems.map((experienceItem, index) => (
@@ -143,7 +143,7 @@ export default function Autobiography() {
                 {formatDateToMonthYear(experienceItem.fields.begin) + " - " + formatDateToMonthYear(experienceItem.fields.end)}</time>
               <h3 className="text-lg font-semibold text-gray-900 dark:text-white" key={"experience_item_summary_" + index}>{experienceItem.fields.summary}</h3>
               <div className="mb-4 text-base font-normal text-gray-500 dark:text-gray-400" key={"experience_item_text_" + index}>
-                <div className="max-w-screen-md mx-auto" key={"experience_item_text_inner_div_" + index}>
+                <div className="max-w-screen-lg mx-auto" key={"experience_item_text_inner_div_" + index}>
                   {documentToReactComponents(experienceItem.fields.details)}
                 </div>
               </div>
