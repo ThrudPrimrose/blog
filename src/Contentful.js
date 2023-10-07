@@ -38,4 +38,9 @@ export class ContentfulService {
         console.assert(this.cdaClient);
         return this.getAllEntriesOfType("pExperienceList", query);
     }
+
+    getEducation(query) {
+        console.assert(this.cdaClient);
+        return this.getAllEntriesOfType("pEducationList", query);
+    }
 }
