@@ -27,7 +27,7 @@ export default function Navbar() {
     <Disclosure as="nav" className="bg-white-800">
       {({ open }) => (
         <>
-          <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+          <div className="container mx-auto">
             <div className="relative flex h-16 items-center justify-between">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button*/}
@@ -44,12 +44,16 @@ export default function Navbar() {
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
                     {navigation.map((item, offset) => (
+                      <>
+                      {offset > 0 && (
+                        <div className="border-l-2 border-gray-300" key={"clause_i_" + "_" + offset}></div>
+                      )}
                       <Link
                         key={item.name}
                         href={item.routeName}
                         className={classNames(
-                          item.current ? 'bg-gray-300 text-black' : 'text-gray-900 hover:bg-gray-700 hover:text-white',
-                          'rounded-md px-3 py-2 text-sm font-medium'
+                          item.current ? 'bg-gray-700 text-white' : 'text-gray-900 hover:bg-gray-400',
+                          'bg-gray-100 rounded-md px-3 py-2 text-sm font-medium'
                         )}
                         aria-current={item.current ? 'page' : undefined}
                         to={item.routeName}
@@ -57,6 +61,7 @@ export default function Navbar() {
                       >
                       {item.name}
                       </Link>
+                      </>
                     ))}
                   </div>
                 </div>
@@ -71,7 +76,7 @@ export default function Navbar() {
                   key={item.name + "_mobile"}
                   href={item.routeName}
                   className={classNames(
-                    item.current ? 'bg-gray-300 text-black' : 'text-gray-900 hover:bg-gray-700 hover:text-white',
+                    item.current ? 'bg-gray-100 text-black' : 'text-gray-900 hover:bg-gray-700 hover:text-white',
                     'block rounded-md px-3 py-2 text-base font-medium'
                   )}
                   aria-current={item.current ? 'page' : undefined}
