@@ -8,14 +8,39 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+
+var fieldValueHistory = ['Home']
 
 function App() {
+  // Simulating session storage here)
   let [fieldValue, setFieldValue] = useState('Home');
 
   let changeField = (newValue) => {
+    fieldValueHistory.push(newValue);
     setFieldValue(newValue);
   };
+
+  // When the user goes back, we will update the history of the navbar
+  useEffect(() => {
+    const handlePopstate = () => { 
+      if (fieldValueHistory.length > 1){
+        fieldValueHistory.pop(); // Current
+        setFieldValue(fieldValueHistory[fieldValueHistory.length - 1]);
+        console.log('User clicked the back button' + String(fieldValueHistory.length));
+      } else if (fieldValueHistory.length == 1) {
+        setFieldValue('Home');
+        console.log('User clicked the back button' + String(fieldValueHistory.length));
+      } // else just ignore it, this means the user pressed back so much that
+      // they got the same site again, dont care enough about it to use cookies or anything
+    };
+
+    window.addEventListener('popstate', handlePopstate);
+
+    return () => {
+      window.removeEventListener('popstate', handlePopstate);
+    };
+  });
 
   return (
     <Router>
