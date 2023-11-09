@@ -2,26 +2,22 @@ import { Disclosure, } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
-
 const navigation = [
-  { name: 'Home', current: true, routeName: '/' },
-  { name: 'Autobiography', current: false, routeName: '/bio' },
+  { name: 'Home', routeName: '/' },
+  { name: 'Blog', routeName: '/blog'},
+  { name: 'Autobiography', routeName: '/bio' },
 ]
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Navbar() {
+export default function Navbar(props) {
     useNavigate(); //this call is necessary for updating the state of class depending on the active route
-    
-    function setCurrent(offset) {
-        for (var navitem of navigation) {
-            navitem.current = false;
-        }
-        navigation[offset].current = true;
-        //console.log(offset, navigation);
-    }
+
+
+    let current = props.fieldValue;
+    let changeField = props.changeField;
 
     return (
     <Disclosure as="nav" className="bg-white-800">
@@ -46,18 +42,18 @@ export default function Navbar() {
                     {navigation.map((item, offset) => (
                       <>
                       {offset > 0 && (
-                        <div className="border-l-2 border-gray-300" key={"clause_i_" + "_" + offset}></div>
+                        <div className="border-l-2 border-gray-300" key={"clause_i_" + offset}></div>
                       )}
                       <Link
-                        key={item.name}
+                        key={item.name+"_"+offset}
                         href={item.routeName}
                         className={classNames(
-                          item.current ? 'bg-gray-700 text-white' : 'text-gray-900 hover:bg-gray-400',
+                          current === item.name ? 'bg-gray-700 text-white' : 'text-gray-900 hover:bg-gray-400',
                           'bg-gray-100 rounded-md px-3 py-2 text-sm font-medium'
                         )}
-                        aria-current={item.current ? 'page' : undefined}
+                        aria-current={current ? 'page' : undefined}
                         to={item.routeName}
-                        onClick={() => {setCurrent(offset)}}
+                        onClick={() => { changeField(item.name);}}
                       >
                       {item.name}
                       </Link>
@@ -76,12 +72,12 @@ export default function Navbar() {
                   key={item.name + "_mobile"}
                   href={item.routeName}
                   className={classNames(
-                    item.current ? 'bg-gray-100 text-black' : 'text-gray-900 hover:bg-gray-700 hover:text-white',
+                    current === item.name ? 'bg-gray-100 text-black' : 'text-gray-900 hover:bg-gray-700 hover:text-white',
                     'block rounded-md px-3 py-2 text-base font-medium'
                   )}
-                  aria-current={item.current ? 'page' : undefined}
+                  aria-current={current ? 'page' : undefined}
                   to={item.routeName}
-                  onClick={() => {setCurrent(offset)}}
+                  onClick={() => {changeField(item.name); }}
                 >
                   {item.name}
                 </Link>
