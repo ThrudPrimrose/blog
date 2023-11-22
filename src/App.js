@@ -46,7 +46,7 @@ function App() {
 
   return (
     <Router>
-      <div className="dark:bg-gray-800">
+      <div className="dark:bg-gray-800 mb-auto min-h-[95vh]">
         <Navbar fieldValue={fieldValue} changeField={changeField} />
         <Routes>
           <Route path="/" element={<><Greet changeField={changeField} /></>} />
@@ -57,8 +57,8 @@ function App() {
           <Route path="/blog/newestBlogPost2" element={<Blog current={2} />} />
           <Route path="/disclaimer" element={<Disclaimer />} />
         </Routes>
-        <Footer />
       </div>
+      <Footer />
     </Router>
   );
 }
