@@ -1,7 +1,9 @@
 module.exports = {
+  mode: 'jit',
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       keyframes: {
@@ -17,3 +19,4 @@ module.exports = {
   },
   plugins: [],
 }
+

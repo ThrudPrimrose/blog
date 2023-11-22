@@ -39,7 +39,7 @@ export default function Feed() {
         {jsonData ? (
           <Carousel
             responsive={responsive}
-            className="flex pl-8 pr-8 ml-8 mr-8 flex-shrink-0">
+            className="flex pl-8 pr-8 ml-8 mr-8 flex-shrink-0 dark:bg-gray-800">
             {(() => {
               const arr = [];
               for (let index = 0; index < 6; index++) {
