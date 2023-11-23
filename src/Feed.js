@@ -76,7 +76,7 @@ export default function Feed() {
           </Carousel>
         ) : (<></>)}
         <div className="mx-auto rounded-sm pt-1 mb-[-25px] relative">
-          <a href="https://www.instagram.com/thrudprimrose" className="text-gray-500 absolute top-0 right-0 mr-[25px]"> @thrudprimrose </a>
+          <a href="https://www.instagram.com/thrudprimrose" className="text-gray-600 absolute top-0 right-0 mr-[25px]"> @thrudprimrose </a>
         </div>
       </div>
     </>

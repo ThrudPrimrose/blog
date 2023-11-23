@@ -15,3 +15,27 @@ code {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  h1 {
+      @apply mb-6 text-4xl font-semibold text-gray-900;
+  }
+  h2 {
+      @apply text-3xl font-semibold text-gray-900;
+  }
+  h3 {
+    @apply text-2xl font-semibold text-gray-900;
+  }
+  h4 {
+    @apply text-xl font-semibold text-gray-900;
+  }
+  h4 {
+    @apply text-base font-semibold text-gray-900;
+  }
+  h5 {
+    @apply text-sm font-semibold text-gray-900;
+  }
+  p {
+    @apply mb-4 text-gray-600;
+  }
+}

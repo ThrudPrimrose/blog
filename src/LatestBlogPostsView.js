@@ -48,7 +48,7 @@ export default function LatestBlogPostsView(props) {
                   <div className='relative' key={'blog_post_nimage_outer_div' + iter}>
                     <div className='p-8 w-full' key={'blog_post_nimage_inner_div' + iter}>
                       <div className='uppercase tracking-wide text-sm text-gray-900 font-semibold' key={'blog_post_summary_div' + iter}>{post.fields.postTitle}</div>
-                      <p key={'blog_post_text' + iter} className='mt-2 text-gray-500'>{('postSummary' in post.fields) ? post.fields.postSummary.slice(0, Math.min(200, post.fields.postSummary.length)) : ''}...</p>
+                      <p key={'blog_post_text' + iter} className='mt-2 text-gray-600 text-justify'>{('postSummary' in post.fields) ? post.fields.postSummary.slice(0, Math.min(200, post.fields.postSummary.length)) : ''}...</p>
                     </div>
                   </div>
                 </div>
