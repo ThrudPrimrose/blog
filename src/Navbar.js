@@ -88,6 +88,7 @@ export default function Navbar(props) {
                         to={item.routeName}
                         onClick={() => {
                           if (item.name === current && item.name === "Blog"){
+                            changeField(item.name); 
                             window.location.reload();
                           }
                           changeField(item.name); 

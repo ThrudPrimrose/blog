@@ -14,6 +14,19 @@ export default function LatestBlogPosts(props) {
 
   let n = props.n;
   let current = props.current;
+  window.addEventListener('beforeunload', function () {
+    sessionStorage.setItem('refreshFlag2', 'true');
+  });
+
+  window.addEventListener('load', function () {
+    const refreshFlag = sessionStorage.getItem('refreshFlag2');
+
+    if (refreshFlag) {
+      // Clear the flag
+      changeCurrent(-1);
+    }
+  });
+
   useEffect(() => {
     if (n > 0) {
       ContentfulService.getInstance()
@@ -34,14 +47,22 @@ export default function LatestBlogPosts(props) {
         .catch((error) => console.error('Error fetching data:', error));
     }
   }, [n]);
+  console.log(current);
 
   const changeCurrent = (newCurrent) => {
+    current = newCurrent;
     setRenderVar(newCurrent);
   };
 
+  const returnToBlog = () => {
+    current = -1;
+    setRenderVar(-1);
+  }
+
   useEffect(() => {
     //console.log('renderVar changed:', renderVar);
-  }, [renderVar]);
+    setRenderVar(current);
+  }, [current]);
 
   return (
     <>
@@ -76,20 +97,28 @@ export default function LatestBlogPosts(props) {
               </div>
             ))}
             </div>
-          ) : (<div className='m-8 pl-8 pr-8 block'>
-            <span class="text-justify">
-              <div
-                dangerouslySetInnerHTML={{
-                  __html:
-                    DOMPurify.sanitize(
-                      he.decode(
-                        documentToHtmlString(
-                          latestBlogPosts.items[renderVar].fields.postBody)
+          ) : (<>
+            <div className='m-8 pl-8 pr-8 block pt-6'>
+              <span class="text-justify">
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html:
+                      DOMPurify.sanitize(
+                        he.decode(
+                          documentToHtmlString(
+                            latestBlogPosts.items[renderVar].fields.postBody)
+                        )
                       )
-                    )
-                }} />
-            </span>
-          </div>)
+                  }} />
+              </span>
+            </div>
+            <div className="flex justify-end pr-8 m-8">
+              <button className="bg-white hover:bg-gray-300 text-gray-600 py-2 px-4 rounded border border-gray-300"
+                onClick={returnToBlog}>
+                Return to Blog
+              </button>
+            </div>
+          </>)
           ) : (<div></div>)}
     </>
   );
