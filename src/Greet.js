@@ -13,7 +13,8 @@ export default function Greet(props) {
         a web portal to talk about my research, and a project to train some web development and design!
       </p>
     </div>
-      <Feed /><LatestBlogPostsView n={3} changeField={
+      <Feed />
+      <LatestBlogPostsView n={3} changeField={
         changeField
       } />
     </>);

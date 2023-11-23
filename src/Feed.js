@@ -9,7 +9,13 @@ export default function Feed() {
     // Fetch JSON data from the URL
     fetch('https://feeds.behold.so/wpjRz1NveAo9372ztl7L')
       .then((response) => response.json())
-      .then((data) => { setJsonData(data); })
+      .then((data) => { 
+        if (data.status && data.status === "error"){
+          console.log(data); console.log(data.length); 
+        }else{
+          setJsonData(data); console.log(data); console.log(data.length); 
+        }
+      })
       .catch((error) => console.error('Error fetching data:', error));
   }, []);
 
@@ -37,12 +43,13 @@ export default function Feed() {
     <>
       <div className="container mx-auto">
         {jsonData ? (
+          <>
           <Carousel
             responsive={responsive}
             className="flex pl-8 pr-8 ml-8 mr-8 flex-shrink-0 dark:bg-gray-800">
             {(() => {
               const arr = [];
-              for (let index = 0; index < 6; index++) {
+              for (let index = 0; index < jsonData.length; index++) {
                 if (jsonData[index].dimensions.width > jsonData[index].dimensions.height) {
                   arr.push(
                     <div key={"feed_item_1_" + index} className="group/item p-8 w-64 h-64 flex justify-center flex-shrink-0">
@@ -74,10 +81,12 @@ export default function Feed() {
               return arr;
             })()}
           </Carousel>
+          <div className="mx-auto rounded-sm pt-1 mb-[-25px] relative">
+            <a href="https://www.instagram.com/thrudprimrose" className="text-gray-600 absolute top-0 right-0 mr-[25px]"> @thrudprimrose </a>
+          </div>
+          </>
         ) : (<></>)}
-        <div className="mx-auto rounded-sm pt-1 mb-[-25px] relative">
-          <a href="https://www.instagram.com/thrudprimrose" className="text-gray-600 absolute top-0 right-0 mr-[25px]"> @thrudprimrose </a>
-        </div>
+
       </div>
     </>
   );
