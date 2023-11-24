@@ -107,13 +107,15 @@ export default function LatestBlogPosts(props) {
       [BLOCKS.EMBEDDED_ASSET]: (node, children) => {
         // render the EMBEDDED_ASSET as you need
         return (
-          <div className="flex justify-center items-center">
-            <img
-              src={`https://${node.data.target.fields.file.url}`}
-              height={node.data.target.fields.file.details.image.height}
-              width={node.data.target.fields.file.details.image.width}
-              alt={node.data.target.fields.description}
-            />
+          <div className="flex justify-center items-center min-h-200">
+            <div className="min-h-200">
+              <img className="w-full h-auto"
+                src={`https://${node.data.target.fields.file.url}`}
+                height={node.data.target.fields.file.details.image.height}
+                width={node.data.target.fields.file.details.image.width}
+                alt={node.data.target.fields.description}
+              />
+            </div>
           </div>
         );
       },
