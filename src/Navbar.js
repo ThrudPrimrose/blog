@@ -2,8 +2,6 @@ import { Disclosure, } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
-import { useState } from 'react';
 
 const navigation = [
   { name: 'Home', routeName: '/' },
@@ -17,38 +15,8 @@ function classNames(...classes) {
 
 export default function Navbar(props) {
     useNavigate(); //this call is necessary for updating the state of class depending on the active route
-    const location = useLocation();
-    const currentRoute = location.pathname;
 
     let current = props.fieldValue;
-
-    window.addEventListener('beforeunload', function () {
-      sessionStorage.setItem('refreshFlag', 'true');
-    });
-    
-    window.addEventListener('load', function () {
-      const refreshFlag = sessionStorage.getItem('refreshFlag');
-    
-      if (refreshFlag) {
-        // Clear the flag
-        sessionStorage.removeItem('refreshFlag');
-
-        current =  currentRoute.charAt(1).toUpperCase() + currentRoute.substring(2);
-        if (current === "Bio")
-        {
-          current = "Autobiography";
-        }
-        if (current === "")
-        {
-          current = "Home";
-        }
-        setCc(current);
-        changeField(current);
-      }
-    });
-
-    // eslint-disable-next-line
-    const [cc, setCc] = useState(current);
 
     let changeField = props.changeField;
 
@@ -87,10 +55,6 @@ export default function Navbar(props) {
                         aria-current={current ? 'page' : undefined}
                         to={item.routeName}
                         onClick={() => {
-                          if (item.name === current && item.name === "Blog"){
-                            changeField(item.name); 
-                            window.location.reload();
-                          }
                           changeField(item.name); 
                         }}
                       >

@@ -2,6 +2,7 @@ import Feed from './Feed.js';
 import LatestBlogPostsView from './LatestBlogPostsView.js';
 
 export default function Greet(props) {
+  let data = props.data;
   let changeField = props.changeField;
   return (
     <><div className=
@@ -14,8 +15,6 @@ export default function Greet(props) {
       </p>
     </div>
       <Feed />
-      <LatestBlogPostsView n={3} changeField={
-        changeField
-      } />
+      <LatestBlogPostsView changeField={changeField} data={data} />
     </>);
 }

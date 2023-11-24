@@ -2,9 +2,9 @@
 import LatestBlogPosts from './LatestBlogPosts.js';
 
 export default function Blog(props) {
-  let current = props.current;
+  let data = props.data;
   return (
     <>
-      <LatestBlogPosts current={current} n={-1} />
+      <LatestBlogPosts data={data} />
     </>);
 }

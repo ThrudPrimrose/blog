@@ -55,7 +55,7 @@ export default function Autobiography() {
       });
       retrievedAutobiography = true;
     }
-  });
+  }, []);
 
   useEffect(() => {
     if (!retrievedExperienceItems) {
@@ -67,7 +67,7 @@ export default function Autobiography() {
       });
       retrievedExperienceItems = true;
     }
-  });
+  }, []);
 
   useEffect(() => {
     if (!retrievedEducationItems) {
@@ -78,7 +78,7 @@ export default function Autobiography() {
       });
       retrievedEducationItems = true;
     }
-  });
+  }, []);
 
   return (
     <div className="dark:bg-gray-800">
