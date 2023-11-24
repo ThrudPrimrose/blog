@@ -17,7 +17,7 @@ import {
 var fieldValueHistory = ['Home']
 
 function App() {
- 
+
   // Simulating session storage here)
   let [fieldValue, setFieldValue] = useState('Home');
 
@@ -27,30 +27,72 @@ function App() {
   };
 
   let onlyUpdateHistory = (newValue) => {
-    fieldValueHistory.push(newValue);  
+    fieldValueHistory.push(newValue);
   };
 
   const [latestBlogPosts, setLatestsBlogPosts] = useState(null);
   const [dynamicRoutes, setDynamicRoutes] = useState([]);
 
   useEffect(() => {
-    ContentfulService.getInstance()
-      .getBlogPosts()
-      .then((data) => {
-        const asDict = { 'items': data };
-        setLatestsBlogPosts(asDict);
-        setDynamicRoutes(data.map((el, index) => {
-          const strippedTitle = el.fields.postTitle.replace(/\s/g, "");
-          const path = `/blog/${strippedTitle}`;
+    const retrievedPosts= sessionStorage.getItem('blogPosts') !== null;
+    if (retrievedPosts) {
+      const data = JSON.parse(sessionStorage.getItem('blogPosts'));
+      const asDict = { 'items': data };
+      console.log("using session storage");
+      setLatestsBlogPosts(asDict);
+      setDynamicRoutes(data.map((el) => {
+        const strippedTitle = el.fields.postTitle.replace(/\s/g, "");
+        const path = `/blog/${strippedTitle}`;
 
-          return (
-            <Route key={strippedTitle}
-              path={path} 
-              element={<BlogPost data={el} />} />
-          );
-        }));
-      })
-      .catch((error) => console.error('Error fetching data:', error));
+        return (
+          <Route key={strippedTitle}
+            path={path}
+            element={<BlogPost data={el} />} />
+        );
+      }));
+    } else {
+      ContentfulService.getInstance()
+        .getBlogPosts()
+        .then((data) => {
+          const asDict = { 'items': data };
+          setLatestsBlogPosts(asDict);
+          sessionStorage.setItem('blogPosts', JSON.stringify(data));
+          /*
+          Session storage for URLs, do it later
+          for ( post in data ){
+            const url = post.fields.postThumbnail.fields.file.url;
+            
+            fetch(imageUrl)
+            .then(response => response.blob())
+            .then(blob => {
+              // Convert the blob to a data URL
+              const reader = new FileReader();
+              reader.onload = () => {
+                const dataUrl = reader.result;
+      
+                // Store the data URL in sessionStorage
+                sessionStorage.setItem(post.fields.postTitle., dataUrl);
+              };
+      
+              reader.readAsDataURL(blob);
+            })
+            sessionStorage.setItem('thumbnail', dataUrl);
+          }
+          */
+
+          setDynamicRoutes(data.map((el) => {
+            const strippedTitle = el.fields.postTitle.replace(/\s/g, "");
+            const path = `/blog/${strippedTitle}`;
+
+            return (
+              <Route key={strippedTitle}
+                path={path}
+                element={<BlogPost data={el} />} />
+            );
+          }));
+        })
+        .catch((error) => console.error('Error fetching data:', error));
+    }
   }, []);
 
   // When the user goes back, we will update the history of the navbar
