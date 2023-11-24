@@ -22,8 +22,12 @@ function App() {
   let [fieldValue, setFieldValue] = useState('Home');
 
   let changeField = (newValue) => {
-    fieldValueHistory.push(newValue);
     setFieldValue(newValue);
+    fieldValueHistory.push(newValue);
+  };
+
+  let onlyUpdateHistory = (newValue) => {
+    fieldValueHistory.push(newValue);  
   };
 
   const [latestBlogPosts, setLatestsBlogPosts] = useState(null);
@@ -36,13 +40,9 @@ function App() {
         const asDict = { 'items': data };
         setLatestsBlogPosts(asDict);
         setDynamicRoutes(data.map((el, index) => {
-          console.log(`Route ${index + 1}:`);
           const strippedTitle = el.fields.postTitle.replace(/\s/g, "");
           const path = `/blog/${strippedTitle}`;
-          console.log(`  Path: ${path}`);
-          console.log(`  Component: DynamicRoute`);
-          console.log();
-          
+
           return (
             <Route key={strippedTitle}
               path={path} 
@@ -79,10 +79,7 @@ function App() {
         <Routes>
           <Route path="/" element={<><Greet changeField={changeField} data={latestBlogPosts} /></>} />
           <Route path="/bio" element={<Autobiography />} />
-          <Route path="/blog" element={<Blog data={latestBlogPosts} />} />
-          <Route path="/blog/newestBlogPost0" element={<Blog data={latestBlogPosts} />} />
-          <Route path="/blog/newestBlogPost1" element={<Blog data={latestBlogPosts} />} />
-          <Route path="/blog/newestBlogPost2" element={<Blog data={latestBlogPosts} />} />
+          <Route path="/blog" element={<Blog onlyUpdateHistory={onlyUpdateHistory} data={latestBlogPosts} />} />
           <Route path="/disclaimer" element={<Disclaimer />} />
           {dynamicRoutes}
           <Route path="/blog/:postTitle" element={<BlogPost />} />

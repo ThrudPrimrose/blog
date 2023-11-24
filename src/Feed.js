@@ -10,10 +10,8 @@ export default function Feed() {
     fetch('https://feeds.behold.so/wpjRz1NveAo9372ztl7L')
       .then((response) => response.json())
       .then((data) => { 
-        if (data.status && data.status === "error"){
-          console.log(data); console.log(data.length); 
-        }else{
-          setJsonData(data); console.log(data); console.log(data.length); 
+        if (!(data.status && data.status === "error")){
+          setJsonData(data);
         }
       })
       .catch((error) => console.error('Error fetching data:', error));

@@ -10,14 +10,14 @@ export default function LatestBlogPostsView(props) {
       {
         data &&
         (<div className='pt-8 pr-4 pl-4'> {
-          data.items.slice(0,4).map((post, iter) => (
+          data.items.slice(0, 4).map((post, iter) => (
             <div className='mx-auto bg-white rounded-sm shadow-md overflow-hidden w-[80vw] m-8 mb-6 mt-6
           hover:transform hover:scale-105 hover:shadow-lg transition ease-out h-min-[48]' key={'blog_post_outer_div' + iter}>
               <Link
                 className='h-full w-full'
                 href={'/blog/' + post.fields.postTitle.replace(/\s/g, "")}
                 to={'/blog/' + post.fields.postTitle.replace(/\s/g, "")}
-                key={'blog_post_link_' + iter}
+                key={'blog_post_view_link_' + iter}
                 onClick={() => { changeField("Blog"); }}>
                 <div className='flex h-min-[48]' key={'blog_post_inner_div' + iter}>
                   <div className='w-32 h-32 flex-shrink-0 m-4' key={'blog_post_image_div' + iter}>

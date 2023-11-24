@@ -63,8 +63,6 @@ export default function BlogPost(props) {
     };
 
     const el = props.data;
-    console.log("router:", el);
-    console.log("router2:", props);
 
     return (
         <div>
