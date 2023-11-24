@@ -2,9 +2,8 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ContentfulService } from './Contentful.js'
-import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
-import he from 'he'
-import DOMPurify from 'dompurify'
+import { BLOCKS, INLINES } from "@contentful/rich-text-types";
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
 var retrivedLatestBlogPosts = false;
 
@@ -52,6 +51,7 @@ export default function LatestBlogPosts(props) {
   const changeCurrent = (newCurrent) => {
     current = newCurrent;
     setRenderVar(newCurrent);
+    console.log(latestBlogPosts.items[newCurrent]);
   };
 
   const returnToBlog = () => {
@@ -63,6 +63,62 @@ export default function LatestBlogPosts(props) {
     //console.log('renderVar changed:', renderVar);
     setRenderVar(current);
   }, [current]);
+
+  const renderOptions = {
+    renderNode: {
+      [INLINES.EMBEDDED_ENTRY]: (node, children) => {
+        // target the contentType of the EMBEDDED_ENTRY to display as you need
+        if (node.data.target.sys.contentType.sys.id === "blogPost") {
+          return (
+            <a href={`/blog/${node.data.target.fields.slug}`}>            {node.data.target.fields.title}
+            </a>
+          );
+        }
+      },
+      [BLOCKS.EMBEDDED_ENTRY]: (node, children) => {
+        // target the contentType of the EMBEDDED_ENTRY to display as you need
+        if (node.data.target.sys.contentType.sys.id === "codeBlock") {
+          return (
+            <div className="flex items-center justify-center h-screen">
+              <div class="text-center">
+                <pre>
+                  <code>{node.data.target.fields.code}</code>
+                </pre>
+              </div>
+            </div>
+          );
+        }
+
+        if (node.data.target.sys.contentType.sys.id === "videoEmbed") {
+          return (
+            <div className="flex justify-center items-center">
+              <iframe
+                src={node.data.target.fields.embedUrl}
+                height="100%"
+                width="100%"
+                title={node.data.target.fields.title}
+                allowFullScreen={true}
+              />
+            </div>
+          );
+        }
+      },
+
+      [BLOCKS.EMBEDDED_ASSET]: (node, children) => {
+        // render the EMBEDDED_ASSET as you need
+        return (
+          <div className="flex justify-center items-center">
+            <img
+              src={`https://${node.data.target.fields.file.url}`}
+              height={node.data.target.fields.file.details.image.height}
+              width={node.data.target.fields.file.details.image.width}
+              alt={node.data.target.fields.description}
+            />
+          </div>
+        );
+      },
+    },
+  };
 
   return (
     <>
@@ -99,17 +155,10 @@ export default function LatestBlogPosts(props) {
             </div>
           ) : (<>
             <div className='m-8 pl-8 pr-8 block pt-6'>
-              <span class="text-justify">
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html:
-                      DOMPurify.sanitize(
-                        he.decode(
-                          documentToHtmlString(
-                            latestBlogPosts.items[renderVar].fields.postBody)
-                        )
-                      )
-                  }} />
+              <span className="text-justify">
+                <>
+                {documentToReactComponents( latestBlogPosts.items[renderVar].fields.postBody, renderOptions)}
+                </>
               </span>
             </div>
             <div className="flex justify-end pr-8 m-8">
@@ -123,3 +172,19 @@ export default function LatestBlogPosts(props) {
     </>
   );
 }
+
+/*
+import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
+import he from 'he'
+import DOMPurify from 'dompurify'
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html:
+                      DOMPurify.sanitize(
+                        he.decode(
+                          documentToHtmlString(
+                            latestBlogPosts.items[renderVar].fields.postBody), renderOptions
+                        )
+                      )
+                  }} />
+*/
