@@ -54,4 +54,9 @@ export class ContentfulService {
     return this.cdaClient.getEntries(
       { content_type: 'pBlogPost', order: '-sys.createdAt', limit: 3 });
   }
+
+  getFavoritePosts() {
+    console.assert(this.cdaClient);
+    return this.getAllEntriesOfType('favoritePosts', {});
+  }
 }
