@@ -140,7 +140,7 @@ export default function Autobiography() {
                   <time className="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-400" key={"experience_date_" + index}>
                     {formatDateToMonthYear(experienceItem.fields.begin) + " - " + formatDateToMonthYear(experienceItem.fields.end)}</time>
                   <h3 className='text-lg font-semibold text-gray-900 dark:text-gray-700' key={'experience_item_summary_' + index}>{experienceItem.fields.summary}</h3>
-                  <div className="mb-4 pl-6 text-base font-normal text-gray-600 dark:text-gray-400" key={"experience_item_text_" + index}>
+                  <div className="mb-4 pl-6 text-base font-normal text-gray-600 dark:text-gray-400 pr-4" key={"experience_item_text_" + index}>
                     <div className="max-w-screen-lg mx-auto text-justify" key={"experience_item_text_inner_div_" + index}>
                       {documentToReactComponents(experienceItem.fields.details)}
                     </div>
