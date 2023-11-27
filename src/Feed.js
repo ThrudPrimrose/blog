@@ -28,7 +28,7 @@ export default function Feed() {
   return (
     <>
       <div className="container overflow-hidden">
-        <div class="h-full bg-light-blue-200">
+        <div className="h-full bg-light-blue-200">
         <div className="container mx-auto max-w-[100%]">
         <div className="embedsocial-hashtag" data-ref="84edfe98a6d82d183a31c28bd535695fdf28680d">
           <a
@@ -40,7 +40,7 @@ export default function Feed() {
           </a>
         </div>
       </div>
-        <p class="m-2"></p>
+        <p className="m-2"></p>
         </div>
       </div>
     </>

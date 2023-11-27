@@ -20,7 +20,7 @@ export default function BlogPost(props) {
                 if (node.data.target.sys.contentType.sys.id === "codeBlock") {
                     return (
                         <div className="flex items-center justify-center h-screen">
-                            <div class="text-center">
+                            <div className="text-center">
                                 <pre>
                                     <code>{node.data.target.fields.code}</code>
                                 </pre>
