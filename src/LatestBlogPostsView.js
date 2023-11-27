@@ -9,7 +9,7 @@ export default function LatestBlogPostsView(props) {
     <>
       {
         data &&
-        (<div className='pt-8 pr-4 pl-4'> {
+        (<div className='mt-4 pr-4 pl-4'> {
           data.items.slice(0, 4).map((post, iter) => (
             <div className='mx-auto bg-white rounded-sm shadow-md overflow-hidden w-[80vw] m-8 mb-6 mt-6
           hover:transform hover:scale-105 hover:shadow-lg transition ease-out h-min-[48]' key={'blog_post_outer_div' + iter}>

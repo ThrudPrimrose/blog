@@ -15,9 +15,12 @@ export default function Greet(props) {
           a web portal to talk about my research, and a project to train some web development and design!
         </p>
       </div>
+      <div className="mt-5">
+        <div className='bg-gray-200 h-0.5 w-[70%] mx-auto rounded-full' key={'b_m_' + 0}></div>
+      </div>
       <LatestBlogPostsView changeField={changeField} data={data} />
       <div className="mt-10">
-        <div className='bg-gray-200 h-0.5 w-[70%] mx-auto rounded-full' key={'b_m_' + 0}></div>
+        <div className='bg-gray-200 h-0.5 w-[70%] mx-auto rounded-full' key={'b_m_' + 1}></div>
         <div className="mt-10 mx-auto sm:max-w-[80%] xs:max-w-[80%]">
           <Feed />
         </div>
