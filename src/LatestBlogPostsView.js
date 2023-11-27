@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 export default function LatestBlogPostsView(props) {
   let data = props.data;
-  let changeField = props.changeField;
 
   return (
     <>
@@ -17,8 +16,7 @@ export default function LatestBlogPostsView(props) {
                 className='h-full w-full'
                 href={'/blog/' + post.fields.postTitle.replace(/\s/g, "")}
                 to={'/blog/' + post.fields.postTitle.replace(/\s/g, "")}
-                key={'blog_post_view_link_' + iter}
-                onClick={() => { changeField("Blog"); }}>
+                key={'blog_post_view_link_' + iter}>
                 <div className='flex h-min-[48]' key={'blog_post_inner_div' + iter}>
                   <div className='w-32 h-32 flex-shrink-0 m-4' key={'blog_post_image_div' + iter}>
                     <img src={post.fields.postThumbnail.fields.file.url} alt='Thumbnail' className='w-full h-full object-cover' key={

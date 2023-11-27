@@ -3,7 +3,6 @@ import LatestBlogPostsView from './LatestBlogPostsView.js';
 
 export default function Greet(props) {
   let data = props.data;
-  let changeField = props.changeField;
   return (
     <>
       <div className=
@@ -18,7 +17,7 @@ export default function Greet(props) {
       <div className="mt-5">
         <div className='bg-gray-200 h-0.5 w-[70%] mx-auto rounded-full' key={'b_m_' + 0}></div>
       </div>
-      <LatestBlogPostsView changeField={changeField} data={data} />
+      <LatestBlogPostsView data={data} />
       <div className="mt-10">
         <div className='bg-gray-200 h-0.5 w-[70%] mx-auto rounded-full' key={'b_m_' + 1}></div>
         <div className="mt-10 mx-auto sm:max-w-[80%] xs:max-w-[80%]">

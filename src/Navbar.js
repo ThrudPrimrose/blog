@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const navigation = [
   { name: 'Home', routeName: '/' },
-  { name: 'Blog', routeName: '/blog'},
+  { name: 'Blog', routeName: '/blog' },
   { name: 'Autobiography', routeName: '/bio' },
 ]
 
@@ -14,13 +14,10 @@ function classNames(...classes) {
 }
 
 export default function Navbar(props) {
-    useNavigate(); //this call is necessary for updating the state of class depending on the active route
+  useNavigate(); //this call is necessary for updating the state of class depending on the active route
+  let current = props.fieldValue;
 
-    let current = props.fieldValue;
-
-    let changeField = props.changeField;
-
-    return (
+  return (
     <Disclosure as="nav" className="bg-white-800">
       {({ open }) => (
         <>
@@ -42,24 +39,21 @@ export default function Navbar(props) {
                   <div className="flex space-x-4">
                     {navigation.map((item, offset) => (
                       <>
-                      {offset > 0 && (
-                        <div className="border-l-2 border-gray-300" key={"clause_i_" + offset}></div>
-                      )}
-                      <Link
-                        key={item.name+"_"+offset}
-                        href={item.routeName}
-                        className={classNames(
-                          current === item.name ? 'bg-gray-700 text-white' : 'text-gray-900 hover:bg-gray-400',
-                          'bg-gray-100 rounded-md px-3 py-2 text-sm font-medium'
+                        {offset > 0 && (
+                          <div className="border-l-2 border-gray-300" key={"clause_i_" + offset}></div>
                         )}
-                        aria-current={current ? 'page' : undefined}
-                        to={item.routeName}
-                        onClick={() => {
-                          changeField(item.name); 
-                        }}
-                      >
-                      {item.name}
-                      </Link>
+                        <Link
+                          key={item.name + "_" + offset}
+                          href={item.routeName}
+                          className={classNames(
+                            current === item.name ? 'bg-gray-700 text-white' : 'text-gray-900 hover:bg-gray-400',
+                            'bg-gray-100 rounded-md px-3 py-2 text-sm font-medium'
+                          )}
+                          aria-current={current ? 'page' : undefined}
+                          to={item.routeName}
+                        >
+                          {item.name}
+                        </Link>
                       </>
                     ))}
                   </div>
@@ -80,7 +74,6 @@ export default function Navbar(props) {
                   )}
                   aria-current={current ? 'page' : undefined}
                   to={item.routeName}
-                  onClick={() => {changeField(item.name); }}
                 >
                   {item.name}
                 </Link>
