@@ -27,7 +27,9 @@ export default function Feed() {
 
   return (
     <>
-      <div className="container mx-auto max-w-[100%]">
+      <div className="container overflow-hidden">
+        <div class="h-full bg-light-blue-200">
+        <div className="container mx-auto max-w-[100%]">
         <div className="embedsocial-hashtag" data-ref="84edfe98a6d82d183a31c28bd535695fdf28680d">
           <a
             className="feed-powered-by-es"
@@ -36,6 +38,9 @@ export default function Feed() {
             title="Widget by EmbedSocial"
           >
           </a>
+        </div>
+      </div>
+        <p class="m-2"></p>
         </div>
       </div>
     </>
