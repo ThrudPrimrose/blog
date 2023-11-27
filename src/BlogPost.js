@@ -4,6 +4,11 @@ import { Link } from 'react-router-dom';
 
 export default function BlogPost(props) {
   const renderOptions = {
+    renderText: text => {
+      return text.split('\n').reduce((children, textSegment, index) => {
+        return [...children, index > 0 && <br key={index} />, textSegment];
+      }, []);
+    },
     renderNode: {
       [INLINES.EMBEDDED_ENTRY]: (node, children) => {
         // target the contentType of the EMBEDDED_ENTRY to display as you need
