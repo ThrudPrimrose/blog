@@ -1,10 +1,10 @@
 
-import LatestBlogPosts from './LatestBlogPosts.js';
+import LatestBlogPostsView from './LatestBlogPostsView.js';
 
 export default function Blog(props) {
   let data = props.data;
   return (
     <>
-      <LatestBlogPosts data={data} />
+      <LatestBlogPostsView data={data} n={-1}/>
     </>);
 }

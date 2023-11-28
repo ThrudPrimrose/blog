@@ -1,3 +1,5 @@
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 module.exports = {
   mode: 'jit',
   content: [
@@ -15,6 +17,10 @@ module.exports = {
       animation: {
         blur: 'blur 0.1s linear',
       }
+    },
+    screens: {
+      'xs': '350px',
+      ...defaultTheme.screens,
     },
   },
   plugins: [
