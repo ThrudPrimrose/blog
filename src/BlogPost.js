@@ -11,7 +11,7 @@ export default function BlogPost(props) {
     },
     renderNode: {
       [INLINES.HYPERLINK]: ({ data }, children) => (
-        <a
+        <a className="mb-4 text-gray-800 underline"
           href={data.uri}
           target={`${data.uri}`}
           rel={`${data.uri}`}

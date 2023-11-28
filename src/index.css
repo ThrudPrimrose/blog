@@ -38,7 +38,4 @@ code {
   p {
     @apply mb-4 text-gray-600;
   }
-  a {
-    @apply mb-4 text-gray-800 underline;
-  }
 }
