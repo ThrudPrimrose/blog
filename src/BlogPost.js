@@ -10,6 +10,13 @@ export default function BlogPost(props) {
       }, []);
     },
     renderNode: {
+      [INLINES.HYPERLINK]: ({ data }, children) => (
+        <a
+          href={data.uri}
+          target={`${data.uri}`}
+          rel={`${data.uri}`}
+        >{children}</a>
+      ),
       [INLINES.EMBEDDED_ENTRY]: (node, children) => {
         // target the contentType of the EMBEDDED_ENTRY to display as you need
         if (node.data.target.sys.contentType.sys.id === "blogPost") {
