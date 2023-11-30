@@ -6,7 +6,7 @@ export default function Greet(props) {
   return (
     <>
       <div className=
-        'container mx-auto rounded-md shadow p-8 m-10max-w-[80vw] dark:bg-slate-800 mt-10'>
+        'container mx-auto rounded-md shadow p-8 m-10 max-w-[80vw] dark:bg-slate-800 mt-10'>
         <p className='text-3xl text-gray-700 font-bold mb-5 dark:bg-slate-800'>Welcome!
         </p>
         <p className="text-lg text-gray-600 mb-5 dark:bg-slate-800 text-justify">

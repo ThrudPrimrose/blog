@@ -9,8 +9,8 @@ export default function BlogPost(props) {
     <>
       <div className="flex items-center justify-center">
       {el && (
-          <div className='m-8 pl-8 pr-8 block sm:max-w-[90%] md:max-w-[80%] lg:max-w-[75%] xl:max-w-[70%]'>
-            <h2 className='mt-12 mb-12'>{el.fields.postTitle}</h2>
+          <div className='xs:m-4 sm:m-8 xs:pl-2 xs:pr-2 sm:pl-4 pr-4 block xs:max-w-[98%] sm:max-w-[95%] md:max-w-[90%] lg:max-w-[85%] xl:max-w-[80%]'>
+            <h2 className='mt-8 mb-8'>{el.fields.postTitle}</h2>
             <span className="text-justify">
               <>
                 {documentToReactComponents(el.fields.postBody, renderOptions)}
