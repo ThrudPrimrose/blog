@@ -18,7 +18,6 @@ export default function Core() {
 
   useEffect(() => {
     // This will run whenever the location changes
-    console.log('Current Path:', location.pathname);
     if (location.pathname === "/") {
       setFieldValue("Home");
     } else {
@@ -28,7 +27,6 @@ export default function Core() {
         if (capitalized === "Bio") {
           capitalized = "Autobiography";
         }
-        console.log("New path name:", capitalized, "from:", path_tokens);
         setFieldValue(capitalized);
       } else {
         setFieldValue("");
@@ -47,7 +45,6 @@ export default function Core() {
     if (retrievedPosts) {
       const data = JSON.parse(sessionStorage.getItem('blogPosts'));
       const asDict = { 'items': data };
-      console.log("using session storage");
       setLatestsBlogPosts(asDict);
       setDynamicRoutes(data.map((el) => {
         const strippedTitle = el.fields.postTitle.replace(/\s/g, "");

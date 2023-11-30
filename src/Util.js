@@ -1,3 +1,5 @@
+import { BLOCKS, INLINES } from "@contentful/rich-text-types";
+
 export function formatDateToMonthYear(date) {
   const options = { year: 'numeric', month: 'long' };
   return new Date(date).toLocaleDateString("en-GB", options);
@@ -31,3 +33,73 @@ export function isUnixEpoch(dateSerialized) {
 
   return year === epochYear && month === epochMonth && day === epochDay;
 }
+
+export const renderOptions = {
+  renderText: text => {
+    return text.split('\n').reduce((children, textSegment, index) => {
+      return [...children, index > 0 && <br key={index} />, textSegment];
+    }, []);
+  },
+  renderNode: {
+    [INLINES.HYPERLINK]: ({ data }, children) => (
+      <a className="mb-4 text-gray-800 underline"
+        href={data.uri}
+        target={`${data.uri}`}
+        rel={`${data.uri}`}
+      >{children}</a>
+    ),
+    [INLINES.EMBEDDED_ENTRY]: (node, children) => {
+      // target the contentType of the EMBEDDED_ENTRY to display as you need
+      if (node.data.target.sys.contentType.sys.id === "blogPost") {
+        return (
+          <a href={`/blog/${node.data.target.fields.slug}`}>            {node.data.target.fields.title}
+          </a>
+        );
+      }
+    },
+    [BLOCKS.EMBEDDED_ENTRY]: (node, children) => {
+      // target the contentType of the EMBEDDED_ENTRY to display as you need
+      if (node.data.target.sys.contentType.sys.id === "codeBlock") {
+        return (
+          <div className="flex items-center justify-center h-screen">
+            <div className="text-center">
+              <pre>
+                <code>{node.data.target.fields.code}</code>
+              </pre>
+            </div>
+          </div>
+        );
+      }
+
+      if (node.data.target.sys.contentType.sys.id === "videoEmbed") {
+        return (
+          <div className="flex justify-center items-center">
+            <iframe
+              src={node.data.target.fields.embedUrl}
+              height="100%"
+              width="100%"
+              title={node.data.target.fields.title}
+              allowFullScreen={true}
+            />
+          </div>
+        );
+      }
+    },
+
+    [BLOCKS.EMBEDDED_ASSET]: (node, children) => {
+      // render the EMBEDDED_ASSET as you need
+      return (
+        <div className="flex justify-center items-center min-h-200 p-8 mt-4 mb-4">
+          <div className="min-h-200">
+            <img className="w-full h-auto"
+              src={`https://${node.data.target.fields.file.url}`}
+              height={node.data.target.fields.file.details.image.height}
+              width={node.data.target.fields.file.details.image.width}
+              alt={node.data.target.fields.description}
+            />
+          </div>
+        </div>
+      );
+    },
+  },
+};

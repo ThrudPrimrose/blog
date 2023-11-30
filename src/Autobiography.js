@@ -1,6 +1,6 @@
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { useEffect, useState } from 'react';
-
+import { renderOptions } from './Util';
 import { ContentfulService } from './Contentful.js'
 import { compareByDate, formatDateToMonthYear, isUnixEpoch } from './Util.js'
 
@@ -142,7 +142,7 @@ export default function Autobiography() {
                   <h3 className='text-lg font-semibold text-gray-900 dark:text-gray-700' key={'experience_item_summary_' + index}>{experienceItem.fields.summary}</h3>
                   <div className="mb-4 pl-6 text-base font-normal text-gray-600 dark:text-gray-400 pr-4" key={"experience_item_text_" + index}>
                     <div className="max-w-screen-lg mx-auto text-justify" key={"experience_item_text_inner_div_" + index}>
-                      {documentToReactComponents(experienceItem.fields.details)}
+                      {documentToReactComponents(experienceItem.fields.details, renderOptions)}
                     </div>
                   </div>
                   {index < (experience.length - 1) && (
