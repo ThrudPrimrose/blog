@@ -20,8 +20,10 @@ export default function Greet(props) {
       <LatestBlogPostsView data={data} />
       <div className="mt-10">
         <div className='bg-gray-200 h-0.5 w-[70%] mx-auto rounded-full' key={'b_m_' + 1}></div>
-        <div className="mt-10 mx-auto sm:max-w-[80%] xs:max-w-[80%]">
-          <Feed />
+        <div className='mx-auto w-[70%]'>
+          <div className="mt-0 w-[100%] xs:pl-[12%] xs:pr-[8%] sm:pl-1 sm:pr-1">
+            <Feed />
+          </div>
         </div>
       </div>
     </>);
