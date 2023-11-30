@@ -89,7 +89,7 @@ export const renderOptions = {
     [BLOCKS.EMBEDDED_ASSET]: (node, children) => {
       // render the EMBEDDED_ASSET as you need
       return (
-        <div className="flex justify-center items-center min-h-200 p-8 mt-4 mb-4">
+        <div className="flex justify-center items-center sm:p-2 md:p-4 min-h-200 mt-8 mb-8">
           <div className="min-h-200">
             <img className="w-full h-auto"
               src={`https://${node.data.target.fields.file.url}`}
