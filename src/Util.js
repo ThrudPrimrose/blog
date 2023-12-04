@@ -90,7 +90,7 @@ export const renderOptions = {
       // render the EMBEDDED_ASSET as you need
       return (
         <div className="flex justify-center items-center xs:p-2 sm:p-4 md:p-8 min-h-200">
-          <div className="min-h-200 min-w-[400px]">
+          <div className="min-h-200">
             <img className="w-full h-auto"
               src={`https://${node.data.target.fields.file.url}`}
               height={node.data.target.fields.file.details.image.height}
