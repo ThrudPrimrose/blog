@@ -19,7 +19,7 @@ export default function BlogPost(props) {
           </div>
         )}
       </div>
-      <div className="flex justify-end xs:pr-2 sm:pr-8 m-8">
+      <div className="flex justify-end pr-8 m-8">
         <Link to="/blog">
           <button className="bg-white hover:bg-gray-300 text-gray-600 py-2 px-4 rounded border border-gray-300">
             Return to Blog
