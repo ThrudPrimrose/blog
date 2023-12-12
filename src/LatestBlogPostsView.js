@@ -29,7 +29,7 @@ export default function LatestBlogPostsView(props) {
                 <div className='flex justify-end xs:flex-col sm:flex-col md:flex-row w-min-[48] h-min-[48]'>
                   <div>
                     <input
-                      className="border-[2px] border-gray-300 p-0.5 rounded-sm text-sm"
+                      className="border-[2px] border-gray-300 p-1 rounded-md text-sm"
                       type="text"
                       placeholder="Search tags"
                       value={query}
