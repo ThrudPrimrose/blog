@@ -8,16 +8,16 @@ import { compareByDate, formatDateToMonthYear, isUnixEpoch } from './Util.js'
 const social_media = [
   [
     'instagram', 'https://www.instagram.com/thrudprimrose',
-    '/assets/instagram.svg', 1.0
+    '/assets/instagram.svg', 1.0, false
   ],
-  ['github', 'https://github.com/ThrudPrimrose/', '/assets/github.svg', 1.0],
+  ['github', 'https://github.com/ThrudPrimrose/', '/assets/github.svg', 1.0, true],
   [
     'linkedin', 'https://www.linkedin.com/in/yakup-koray-budanaz-51136b1b5/',
-    '/assets/linkedin.png', 1.18
+    '/assets/linkedin.png', 1.18, false
   ],
   [
     'resaerchgate', 'https://www.researchgate.net/profile/Yakup-Budanaz',
-    '/assets/researchgate.svg', 1.0
+    '/assets/researchgate.svg', 1.0, false
   ]
 ];
 
@@ -75,17 +75,19 @@ export default function Autobiography() {
                     <img className='rounded-full h-48 w-48' src={person.imageUrl} alt='' key='person_image' />
                   </div>
                   <div className='flex-1 flex-auto' key='icon_container'>
-                    <p className='mt-1 text-sm font-semibold leading-6 text-gray-900 text-xl' key='name_inner'>{person.name}</p>
-                    <p className='mt-2 text-gray-600 overflow-visible w-full' key='bio_inner'>{person.autobiography}</p>
+                    <p className='mt-1 text-sm font-semibold leading-6 text-gray-900 text-xl dark:text-gray-300' key='name_inner'>{person.name}</p>
+                    <p className='mt-2 text-gray-600 overflow-visible w-full  dark:text-gray-200' key='bio_inner'>{person.autobiography}</p>
                     <div className='mt-8 ml-0 sm:ml-8 mr-0 sm:ml-8 flex justify-center' key='media_container'>
                       {social_media.map((media_and_link, index) => (
                         <div className='flex flex-auto' key={media_and_link[1] + '_grouper_' + index}>
                           <div className='flex-auto' key={media_and_link[1] + '_logo_' + index}>
                             <div className="aspect-square">
                               <a className='h-full w-full' href={media_and_link[1]} key={media_and_link[1] + '_link_' + index}>
-                                <img width={32 * media_and_link[3]} height={32 * media_and_link[3]}
-                                  key={media_and_link[1] + '_image_' + index}
-                                  src={media_and_link[2]} alt={media_and_link[0]}></img>
+                                <div className={`${media_and_link[4] ? 'dark:hue-rotate-[180deg] dark:invert-[1.0] dark:saturate-[1.8]' : ''}`}>
+                                  <img width={32 * media_and_link[3]} height={32 * media_and_link[3]}
+                                    key={media_and_link[1] + '_image_' + index}
+                                    src={media_and_link[2]} alt={media_and_link[0]}></img>
+                                </div>
                               </a>
                             </div>
                           </div>
@@ -102,21 +104,21 @@ export default function Autobiography() {
             </li>
           ))}
           <div className="container mx-auto bg-white-200 p-8 pb-0 pt-0 min-h-48 min-w-128 max-w-screen-lg relative" key="education_items_container">
-            <h1 className="text-3xl font-semibold text-gray-700 dark:text-gray-700" key="edu_title">Education:</h1>
+            <h1 className="text-3xl font-semibold text-gray-700 dark:text-gray-300" key="edu_title">Education:</h1>
             {education ? (
               <ol className='relative border-l border-gray-200 dark:border-gray-700 m-10 mt-4' key='edu_list'>
                 {education.map((item, index) => (
                   <li className='m-4' key={'edu_list_item_' + index}>
-                    <div className='absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700'
+                    <div className='absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-100'
                       key={'edu_item_' + index}></div>
-                    <time className="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-400" key={"edu_date_" + index}>
+                    <time className="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-100" key={"edu_date_" + index}>
                       {isUnixEpoch(item.fields.end) ?
                         formatDateToMonthYear(item.fields.begin) + " - Present" :
                         formatDateToMonthYear(item.fields.begin) + " - " + formatDateToMonthYear(item.fields.end)}</time>
-                    <h3 className='text-lg font-semibold text-gray-900 dark:text-gray-700' key={'edu_item_summary_' + index}>
+                    <h3 className='text-lg font-semibold text-gray-900 dark:text-gray-400' key={'edu_item_summary_' + index}>
                       {item.fields.institution}
                     </h3>
-                    <div className="mb-1 pl-6 text-base font-normal text-gray-600 dark:text-gray-700" key={"edu_item_text_" + index}>
+                    <div className="mb-1 pl-6 text-base font-normal text-gray-600 dark:text-gray-100" key={"edu_item_text_" + index}>
                       <div className="max-w-screen-lg mx-auto" key={"edu_item_text_inner_div_" + index}>
                         {item.fields.degree}
                       </div>
@@ -131,17 +133,17 @@ export default function Autobiography() {
           </div>
 
           <div className="container mx-auto bg-white-200 min-h-48 min-w-128 max-w-screen-lg p-8 pt-2" key="CV_list_container">
-            <h1 className="text-3xl font-semibold text-gray-700 " key="exp_title">Work Experience:</h1>
+            <h1 className="text-3xl font-semibold text-gray-700 dark:text-gray-300" key="exp_title">Work Experience:</h1>
             <ol className='relative border-l border-gray-200 dark:border-gray-700 m-10 mt-2' key='CV_list'>
               {experience.map((experienceItem, index) => (
                 <li className='m-4' key={'CV_list_item_' + index}>
-                  <div className='absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700'
+                  <div className='absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-100'
                     key={'experience_item_' + index}></div>
-                  <time className="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-400" key={"experience_date_" + index}>
+                  <time className="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-300" key={"experience_date_" + index}>
                     {formatDateToMonthYear(experienceItem.fields.begin) + " - " + formatDateToMonthYear(experienceItem.fields.end)}</time>
-                  <h3 className='text-lg font-semibold text-gray-900 dark:text-gray-700' key={'experience_item_summary_' + index}>{experienceItem.fields.summary}</h3>
-                  <div className="mb-4 pl-6 text-base font-normal text-gray-600 dark:text-gray-400 pr-4" key={"experience_item_text_" + index}>
-                    <div className="max-w-screen-lg mx-auto text-justify" key={"experience_item_text_inner_div_" + index}>
+                  <h3 className='text-lg font-semibold text-gray-900 dark:text-gray-400' key={'experience_item_summary_' + index}>{experienceItem.fields.summary}</h3>
+                  <div className="mb-4 pl-6 text-base font-normal text-gray-600 dark:text-gray-300 pr-4" key={"experience_item_text_" + index}>
+                    <div className="max-w-screen-lg mx-auto text-justify dark:text-gray-100" key={"experience_item_text_inner_div_" + index}>
                       {documentToReactComponents(experienceItem.fields.details, renderOptions)}
                     </div>
                   </div>

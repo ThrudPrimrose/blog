@@ -13,8 +13,9 @@ import {
 } from "react-router-dom";
 import { useLocation } from 'react-router-dom';
 
-export default function Core() {
+export default function Core(props) {
   const location = useLocation();
+  const toggleDarkMode = props.toggleDarkMode;
 
   useEffect(() => {
     // This will run whenever the location changes
@@ -104,7 +105,7 @@ export default function Core() {
   return (
     <>
       <div className="dark:bg-gray-800 mb-auto min-h-[95vh]">
-        <Navbar fieldValue={fieldValue} />
+        <Navbar fieldValue={fieldValue} toggleDarkMode={toggleDarkMode} />
         <Routes>
           <Route path="/" element={<><Greet data={latestBlogPosts} /></>} />
           <Route path="/bio" element={<Autobiography />} />

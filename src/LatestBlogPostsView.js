@@ -29,7 +29,8 @@ export default function LatestBlogPostsView(props) {
                 <div className='flex justify-end xs:flex-col sm:flex-col md:flex-row w-min-[48] h-min-[48]'>
                   <div>
                     <input
-                      className="border-[2px] border-gray-300 p-1 rounded-md text-sm"
+                      className="border-[2px] border-gray-300 dark:border-gray-200 p-1 rounded-md text-sm \
+                      dark:text-color-white dark:bg-slate-800 dark:text-gray-100 dark:placeholder-gray-100"
                       type="text"
                       placeholder="Search tags"
                       value={query}
@@ -53,21 +54,21 @@ export default function LatestBlogPostsView(props) {
                   href={'/blog/' + post.fields.postTitle.replace(/\s/g, "")}
                   to={'/blog/' + post.fields.postTitle.replace(/\s/g, "")}
                   key={'blog_post_view_link_' + iter}>
-                  <div className='flex xs:flex-col sm:flex-col md:flex-row w-min-[48] h-min-[48]' key={'blog_post_inner_div' + iter}>
+                  <div className='flex xs:flex-col sm:flex-col md:flex-row w-min-[48] h-min-[48] dark:bg-gray-900' key={'blog_post_inner_div' + iter}>
                     <div className='xs:w-full md:w-48 xs:justify-center md:justify-start flex sm:m-4'>
-                      <div className='w-48 h-48 m-2 xs:justify-center md:justify-start 4 md:m-auto' key={'blog_post_image_div' + iter}>
+                      <div className='w-48 h-48 m-2 xs:justify-center md:justify-start 4 md:m-auto dark:invert-[1.0] dark:hue-rotate-[180deg] dark:saturate-[1.8]' key={'blog_post_image_div' + iter}>
                         <img src={post.fields.postThumbnail.fields.file.url} alt='Thumbnail' className='w-full h-full object-cover' key={
                           'blog_post_image' + iter} />
                       </div>
                     </div>
                     <div className='relative' key={'blog_post_nimage_outer_div' + iter}>
                       <div className='p-8 w-full' key={'blog_post_nimage_inner_div' + iter}>
-                        <div className='uppercase tracking-wide text-sm text-gray-900 font-semibold' key={'blog_post_summary_div' + iter}>{post.fields.postTitle}</div>
+                        <div className='uppercase tracking-wide text-sm text-gray-900 dark:text-gray-400 font-semibold' key={'blog_post_summary_div' + iter}>{post.fields.postTitle}</div>
                         <div className="rounded-xl border-[2px] inline-block whitespace-nowrap h-6 pl-1 pr-1 mt-2 mb-1">
-                          <p className="text-gray-700 text-xs">{post.fields.tag}</p>
+                          <p className="text-gray-700 dark:text-gray-400 text-xs">{post.fields.tag}</p>
                         </div>
                         <div className="hidden sm:flex">
-                          <p key={'blog_post_text' + iter} className='mt-2 text-gray-600 text-justify'>{('postSummary' in post.fields) ? post.fields.postSummary.slice(0, Math.min(800, post.fields.postSummary.length)) : ''}
+                          <p key={'blog_post_text' + iter} className='mt-2 text-gray-600 dark:text-gray-100 text-justify'>{('postSummary' in post.fields) ? post.fields.postSummary.slice(0, Math.min(800, post.fields.postSummary.length)) : ''}
                             {post.fields.postSummary.length > 800 ? (
                               <p>...</p>
                             ) : (<></>)

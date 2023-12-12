@@ -27,12 +27,12 @@ export default function Feed() {
 
   return (
     <>
-      <div className="container overflow-hidden">
-        <div className="h-full bg-light-blue-200">
-        <div className="container mx-auto max-w-[100%]">
-        <div className="embedsocial-hashtag" data-ref="84edfe98a6d82d183a31c28bd535695fdf28680d">
+      <div className="container overflow-hidden dark:text-white">
+        <div className="h-full bg-light-blue-200 dark:text-white">
+        <div className="container mx-auto max-w-[100%] dark:text-white">
+        <div className="embedsocial-hashtag dark:text-white" data-ref="84edfe98a6d82d183a31c28bd535695fdf28680d">
           <a
-            className="feed-powered-by-es"
+            className="feed-powered-by-es dark:text-white"
             href="https://embedsocial.com/social-media-aggregator/"
             target="_blank"
             title="Widget by EmbedSocial"
@@ -40,7 +40,7 @@ export default function Feed() {
           </a>
         </div>
       </div>
-        <p className="m-2"></p>
+        <p className="m-2 dark:text-white"></p>
         </div>
       </div>
     </>

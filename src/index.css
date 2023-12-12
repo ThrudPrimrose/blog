@@ -18,24 +18,24 @@ code {
 
 @layer base {
   h1 {
-      @apply mb-6 text-4xl font-semibold text-gray-900;
+      @apply mb-6 text-4xl font-semibold text-gray-900 dark:text-gray-300;
   }
   h2 {
-      @apply text-3xl font-semibold text-gray-900;
+      @apply text-3xl font-semibold text-gray-900 dark:text-gray-300;
   }
   h3 {
-    @apply text-2xl font-semibold text-gray-900;
+    @apply text-2xl font-semibold text-gray-900 dark:text-gray-300;
   }
   h4 {
-    @apply text-xl font-semibold text-gray-900;
+    @apply text-xl font-semibold text-gray-900 dark:text-gray-300;
   }
   h4 {
-    @apply text-base font-semibold text-gray-900;
+    @apply text-base font-semibold text-gray-900 dark:text-gray-300;
   }
   h5 {
-    @apply text-sm font-semibold text-gray-900;
+    @apply text-sm font-semibold text-gray-900 dark:text-gray-300;
   }
   p {
-    @apply mb-4 text-gray-600;
+    @apply mb-4 text-gray-600 dark:text-gray-200;
   }
 }

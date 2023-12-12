@@ -42,7 +42,7 @@ export const renderOptions = {
   },
   renderNode: {
     [INLINES.HYPERLINK]: ({ data }, children) => (
-      <a className="mb-4 text-gray-800 underline"
+      <a className="mb-4 text-gray-800 underline dark:text-gray-100"
         href={data.uri}
         target={`${data.uri}`}
         rel={`${data.uri}`}
@@ -91,7 +91,7 @@ export const renderOptions = {
       return (
         <div className="flex justify-center items-center xs:p-2 sm:p-4 md:p-8 min-h-200">
           <div className="min-h-200">
-            <img className="w-full h-auto"
+            <img className="w-full h-auto dark:hue-rotate-[180deg] dark:invert-[1.0] dark:saturate-[1.8]"
               src={`https://${node.data.target.fields.file.url}`}
               height={node.data.target.fields.file.details.image.height}
               width={node.data.target.fields.file.details.image.width}

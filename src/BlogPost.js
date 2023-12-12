@@ -21,7 +21,7 @@ export default function BlogPost(props) {
       </div>
       <div className="flex justify-end pr-8 m-8">
         <Link to="/blog">
-          <button className="bg-white hover:bg-gray-300 text-gray-600 py-2 px-4 rounded border border-gray-300">
+          <button className="bg-white hover:bg-gray-300 text-gray-600 py-2 px-4 rounded border border-gray-300 dark:border-gray-900 dark:bg-gray-500 dark:text-gray-100">
             Return to Blog
           </button>
         </Link>
