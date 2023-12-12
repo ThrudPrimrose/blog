@@ -34,7 +34,7 @@ export default function Feed() {
           <a
             className="feed-powered-by-es dark:text-white"
             href="https://embedsocial.com/social-media-aggregator/"
-            target="_blank"
+            target="_blank" rel="noreferrer"
             title="Widget by EmbedSocial"
           >
           </a>
