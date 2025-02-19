@@ -140,7 +140,9 @@ export default function Autobiography() {
                   <div className='absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-100'
                     key={'experience_item_' + index}></div>
                   <time className="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-300" key={"experience_date_" + index}>
-                    {formatDateToMonthYear(experienceItem.fields.begin) + " - " + formatDateToMonthYear(experienceItem.fields.end)}</time>
+                    {isUnixEpoch(item.fields.end) ?
+                        formatDateToMonthYear(item.fields.begin) + " - Present" :
+                        formatDateToMonthYear(experienceItem.fields.begin) + " - " + formatDateToMonthYear(experienceItem.fields.end)}</time>
                   <h3 className='text-lg font-semibold text-gray-900 dark:text-gray-400' key={'experience_item_summary_' + index}>{experienceItem.fields.summary}</h3>
                   <div className="mb-4 pl-6 text-base font-normal text-gray-600 dark:text-gray-300 pr-4" key={"experience_item_text_" + index}>
                     <div className="max-w-screen-lg mx-auto text-justify dark:text-gray-100" key={"experience_item_text_inner_div_" + index}>
