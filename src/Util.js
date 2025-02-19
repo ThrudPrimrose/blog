@@ -10,6 +10,12 @@ export function compareByDate(key1, key2) {
     const date1 = new Date(a[key1][key2]);
     const date2 = new Date(b[key1][key2]);
 
+    const isEpoch1 = date1.getTime() === 0;
+    const isEpoch2 = date2.getTime() === 0;
+
+    if (isEpoch1 && !isEpoch2) return -1; // Put Unix epoch first
+    if (!isEpoch1 && isEpoch2) return 1;  // Put Unix epoch first
+
     if (date1 > date2) {
       return -1;
     } else if (date1 < date2) {
