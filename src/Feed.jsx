@@ -1,67 +1,80 @@
-import { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
+import { ContentfulService } from './Contentful.jsx';
 
 export default function Feed() {
+  // Define responsive configuration inside the component
+  const [favPosts, setFavPosts] = useState([]);
+
   useEffect(() => {
-    // Function to create and append the script element
-    const loadEmbedSocialScript = () => {
-      const script = document.createElement('script');
-      script.id = 'EmbedSocialHashtagScript';
-      script.src = 'https://embedsocial.com/cdn/ht.jsx';
-      document.getElementsByTagName('head')[0].appendChild(script);
-    };
+    ContentfulService.getInstance().getFavoritePosts().then(data => {
+      // Assuming data is an array of entries with a `url` field inside `fields`
+      const posts = data.flatMap(entry =>
+        (entry.fields.links || []).map(link => ({
+          url: link.url,
+          height: link.height || 480,
+        }))
+      );
+      setFavPosts(posts);
+    }).catch(err => {
+      console.error('Failed to fetch favorite posts:', err);
+    });
+  }, []);
 
-    // Check if the script has already been added to the DOM
-    if (!document.getElementById('EmbedSocialHashtagScript')) {
-      loadEmbedSocialScript();
+  const POST_WIDTH = 320;
+  const POST_MARGIN = 160;
+
+  const responsive = {
+    superLargeDesktop: {
+      breakpoint: { max: (POST_WIDTH + POST_MARGIN) * 18, min: (POST_WIDTH + POST_MARGIN) * 5 },
+      items: 5
+    },
+    desktop: {
+      breakpoint: { max: (POST_WIDTH + POST_MARGIN) * 5, min: (POST_WIDTH + POST_MARGIN) * 4 },
+      items: 4
+    },
+    tablet: {
+      breakpoint: { max: (POST_WIDTH + POST_MARGIN) * 3, min: (POST_WIDTH + POST_MARGIN) * 2 },
+      items: 2
+    },
+    mobile: {
+      breakpoint: { max: (POST_WIDTH + POST_MARGIN) * 2, min: 0 },
+      items: 1
     }
+  };
 
-    // Cleanup function to remove the script when the component is unmounted
-    return () => {
-      const scriptElement = document.getElementById('EmbedSocialHashtagScript');
-      if (scriptElement) {
-        scriptElement.remove();
-      }
-    };
-  }, []); // Empty dependency array ensures the effect runs only once after the initial render
+  const extractPostId = (url) => {
+    const match = url.match(/instagram\.com\/p\/([^/]+)/);
+    return match ? match[1] : '';
+  };
 
   return (
-    <>
-      <div className="container overflow-hidden dark:text-white">
-        <div className="h-full bg-light-blue-200 dark:text-white">
-        <div className="container mx-auto max-w-[100%] dark:text-white">
-        <div className="embedsocial-hashtag dark:text-white" data-ref="84edfe98a6d82d183a31c28bd535695fdf28680d">
-          <a
-            className="feed-powered-by-es dark:text-white"
-            href="https://embedsocial.com/social-media-aggregator/"
-            target="_blank" rel="noreferrer"
-            title="Widget by EmbedSocial"
-          >
-          </a>
-        </div>
-      </div>
-        <p className="m-2 dark:text-white"></p>
-        </div>
-      </div>
-    </>
+    <Carousel
+      responsive={responsive}
+      className="flex flex-shrink-0 dark:bg-gray-800"
+    >
+      {favPosts && favPosts.length > 0 ? (
+        favPosts.map((post, index) => {
+          if (!post?.url) return null;
+          const postId = extractPostId(post.url);
+          if (!postId) return null;
+          return postId ? (
+            <div key={index} className="sm:m-1 md:m-2 lg:m-3 xl:m-4">
+              <iframe
+                src={`https://www.instagram.com/p/${postId}/embed`}
+                width={POST_WIDTH}
+                height={POST_WIDTH * 1.4}
+                allowTransparency={true}
+                allow="encrypted-media"
+                className="rounded-xl shadow-md"
+              />
+            </div>
+          ) : null;
+        })
+      ) : (
+        <div>No posts to display</div>
+      )}
+    </Carousel>
   );
-}
-
-/*
-<Carousel
-  responsive={responsive}
-  className="flex flex-shrink-0 dark:bg-gray-800 justify-content-center">
-  {(() => {
-    const arr = [];
-    for (let index = 0; index < favPosts.length; index++) {
-      arr.push(
-        <div className={`sm:m-1 md:m-2 lg:m-2 xl:m-4`}>
-          <InstagramEmbed className={``} url={favPosts[index].url} linkText="a"
-          />
-        </div>
-      )
-    }
-    return arr;
-  })()}
-</Carousel>
-*/
+};

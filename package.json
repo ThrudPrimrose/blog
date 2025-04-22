@@ -20,6 +20,7 @@
     "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",
     "react-multi-carousel": "^2.8.4",
+    "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.20.0",
     "react-social-media-embed": "^2.3.6",
     "tailwindcss-aspect-ratio": "^3.0.0",
