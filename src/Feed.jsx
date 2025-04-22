@@ -64,7 +64,7 @@ export default function Feed() {
               <iframe
                 src={`https://www.instagram.com/p/${postId}/embed`}
                 width={POST_WIDTH}
-                height={POST_WIDTH * 1.4}
+                height={POST_WIDTH * 1.2}
                 allowTransparency={true}
                 allow="encrypted-media"
                 className="rounded-xl shadow-md"
