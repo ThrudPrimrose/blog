@@ -1,8 +1,8 @@
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { useEffect, useState } from 'react';
 import { renderOptions } from './Util';
-import { ContentfulService } from './Contentful.js'
-import { compareByDate, formatDateToMonthYear, isUnixEpoch } from './Util.js'
+import { ContentfulService } from './Contentful.jsx'
+import { compareByDate, formatDateToMonthYear, isUnixEpoch } from './Util.jsx'
 
 
 const social_media = [

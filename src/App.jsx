@@ -1,6 +1,6 @@
 import './App.css';
 import { BrowserRouter } from "react-router-dom";
-import Core from './Core.js'
+import Core from './Core.jsx'
 import { useState } from 'react';
 
 function App() {

@@ -1,5 +1,5 @@
 
-import LatestBlogPostsView from './LatestBlogPostsView.js';
+import LatestBlogPostsView from './LatestBlogPostsView.jsx';
 
 export default function Blog(props) {
   let data = props.data;

@@ -1,5 +1,5 @@
-import Feed from './Feed.js';
-import LatestBlogPostsView from './LatestBlogPostsView.js';
+import Feed from './Feed.jsx';
+import LatestBlogPostsView from './LatestBlogPostsView.jsx';
 
 export default function Greet(props) {
   let data = props.data;

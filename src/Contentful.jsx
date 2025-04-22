@@ -6,8 +6,8 @@ export class ContentfulService {
     console.assert(!this.cdaClient);
     ContentfulService._instance = this;
     this.cdaClient = createClient({
-      space: process.env.REACT_APP_CONTENTFUL_SPACE,
-      accessToken: process.env.REACT_APP_ACCESS_TOKEN,
+      space: import.meta.env.VITE_CONTENTFUL_SPACE,
+      accessToken: import.meta.env.VITE_ACCESS_TOKEN,
 
     });
   }

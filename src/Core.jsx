@@ -1,12 +1,12 @@
-import Autobiography from './Autobiography.js';
-import Greet from './Greet.js';
-import Navbar from './Navbar.js';
-import Blog from './Blog.js';
-import Disclaimer from './Disclaimer.js'
-import Footer from './Footer.js'
+import Autobiography from './Autobiography.jsx';
+import Greet from './Greet.jsx';
+import Navbar from './Navbar.jsx';
+import Blog from './Blog.jsx';
+import Disclaimer from './Disclaimer.jsx'
+import Footer from './Footer.jsx'
 import { useState, useEffect } from 'react';
-import BlogPost from './BlogPost.js';
-import { ContentfulService } from './Contentful.js'
+import BlogPost from './BlogPost.jsx';
+import { ContentfulService } from './Contentful.jsx'
 import {
   Routes,
   Route,

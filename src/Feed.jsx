@@ -7,7 +7,7 @@ export default function Feed() {
     const loadEmbedSocialScript = () => {
       const script = document.createElement('script');
       script.id = 'EmbedSocialHashtagScript';
-      script.src = 'https://embedsocial.com/cdn/ht.js';
+      script.src = 'https://embedsocial.com/cdn/ht.jsx';
       document.getElementsByTagName('head')[0].appendChild(script);
     };
 
