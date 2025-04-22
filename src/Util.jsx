@@ -7,14 +7,19 @@ export function formatDateToMonthYear(date) {
 
 export function compareByDate(key1, key2) {
   return function (a, b) {
-    const date1 = new Date(a[key1][key2]);
-    const date2 = new Date(b[key1][key2]);
+    let date1 = new Date(a[key1][key2]);
+    let date2 = new Date(b[key1][key2]);
 
-    const isEpoch1 = date1.getTime() === 0;
-    const isEpoch2 = date2.getTime() === 0;
+    const isEpoch1 = isUnixEpoch(date1);
+    const isEpoch2 = isUnixEpoch(date2);
+    console.log("isEpoch1", isEpoch1, date1);
+    console.log("isEpoch2", isEpoch2, date2);
 
-    if (isEpoch1 && !isEpoch2) return -1; // Put Unix epoch first
-    if (!isEpoch1 && isEpoch2) return 1;  // Put Unix epoch first
+    //if (isEpoch1 && isEpoch2) return 0; // Both are Unix epoch
+    //if (isEpoch1 && !isEpoch2) return 1; // Put Unix epoch first
+    //if (!isEpoch1 && isEpoch2) return -1;  // Put Unix epoch first
+    if (isEpoch1) date1 = new Date();
+    if (isEpoch2) date2 = new Date();
 
     if (date1 > date2) {
       return -1;
